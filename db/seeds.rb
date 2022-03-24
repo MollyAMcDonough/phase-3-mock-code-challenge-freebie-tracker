@@ -1,3 +1,8 @@
+puts "Clearing db..."
+Company.destroy_all
+Dev.destroy_all
+Freebie.destroy_all
+
 puts "Creating companies..."
 Company.create(name: "Google", founding_year: 1998)
 Company.create(name: "Facebook", founding_year: 2004)
@@ -17,5 +22,8 @@ puts "Creating freebies..."
 # * and a freebie belongs to a company.                         *
 # ***************************************************************
 # Create freebies Here
+10.times do
+    Freebie.create(company: Company.all.sample, dev: Dev.all.sample, item_name: Faker::Creature::Animal.name, value: rand(1..15))
+end
 
 puts "Seeding done!"
